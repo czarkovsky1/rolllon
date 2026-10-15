@@ -50,8 +50,8 @@
   --wide:1440px;
   --gutter:clamp(16px,4vw,48px);
   --col-gap:clamp(16px,2vw,32px);
-  --sec:clamp(80px,4rem + 6vw,152px);
-  --head-gap:clamp(40px,5vw,72px);
+  --sec:clamp(64px,3rem + 5vw,120px);
+  --head-gap:clamp(32px,4vw,56px);
 
   --ease-out:cubic-bezier(.23,1,.32,1);
   --ease-reveal:cubic-bezier(.16,1,.3,1);
@@ -229,11 +229,15 @@ blockquote{margin:0}
 
 /* ---------- Hero ---------- */
 .hero{padding-top:clamp(20px,2vw,32px);padding-bottom:clamp(32px,4vw,56px)}
-.hero .lead{max-width:56ch}
-.rating{display:inline-flex;align-items:center;gap:10px;padding:9px 18px 9px 14px;border-radius:999px;background:var(--paper);font-size:.9375rem;color:var(--ink-2);margin-bottom:clamp(16px,1.6vw,22px);transition:background-color .2s}
-.rating:hover{background:var(--ice)}
-.rating b{font:600 1.0625rem/1 var(--f-head);color:var(--ink)}
-.hero-title{font-size:clamp(2.5rem,1.583rem + 4.074vw,5.25rem);line-height:1;letter-spacing:-.042em;margin-left:-.05em;max-width:none}
+/* Wyśrodkowany nagłówek, pod nim przyciski i ocena z Google w jednym rzędzie */
+.hero-head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero .lead{max-width:56ch;margin-top:clamp(18px,2vw,26px)}
+.rating{display:inline-grid;gap:5px;margin-left:clamp(4px,1vw,14px);padding:4px 6px;border-radius:12px;text-align:left;color:var(--ink-2)}
+.rating-top{display:flex;align-items:center;gap:8px}
+.rating-top b{font:600 1.125rem/1 var(--f-head);color:var(--ink)}
+.rating-sub{font-size:.875rem;line-height:1.2;transition:color .2s}
+.rating:hover .rating-sub{color:var(--petrol)}
+.hero-title{font-size:clamp(2.5rem,1.583rem + 4.074vw,5.25rem);line-height:1;letter-spacing:-.042em;max-width:none}
 .hero-title .ln{display:block;overflow:clip;padding:.14em 0 .24em;margin:-.14em 0 -.24em}
 .hero-title .ln > span{display:block}
 @media (prefers-reduced-motion:no-preference) and (min-width:700px){
@@ -241,12 +245,8 @@ blockquote{margin:0}
   .js .hero-title .ln + .ln > span{animation-delay:.09s}
 }
 @keyframes line-up{from{transform:translateY(108%)}}
-.hero-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap);row-gap:32px;margin-top:clamp(20px,2vw,28px);align-items:end}
-.hero-main{grid-column:1 / 8}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.hero-trust{grid-column:9 / 13;display:grid;gap:14px;padding-bottom:4px}
-.hero-trust b{display:block;font:500 1.375rem/1.15 var(--f-head);letter-spacing:-.018em;color:var(--ink)}
-.hero-trust span{display:block;font-size:.9375rem;line-height:1.4;color:var(--muted);margin-top:4px}
+.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin-top:28px}
+
 .hero-media{position:relative;margin-top:clamp(28px,3vw,44px);height:clamp(340px,44vw,640px);border-radius:28px}
 .hero-photo{position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:var(--deep)}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:42% 40%}
@@ -413,45 +413,47 @@ blockquote{margin:0}
 .process-cta a.tel{color:#fff;font:500 1.25rem/1 var(--f-head);letter-spacing:-.01em;font-variant-numeric:tabular-nums;text-decoration:underline;text-decoration-color:var(--sky);text-decoration-thickness:3px;text-underline-offset:7px;margin-left:6px}
 
 /* ---------- Opinie ---------- */
-#opinie-title{max-width:24ch}
-.reviews{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--col-gap);align-items:start}
-.rv-side{position:sticky;top:108px}
-.rv-score{margin-top:0;font:300 clamp(5rem,3.5rem + 6.667vw,9.5rem)/.85 var(--f-head);letter-spacing:-.06em;color:var(--petrol);font-variant-numeric:tabular-nums}
-.stars-big{display:block;width:130px;height:22px;margin-top:22px;background:linear-gradient(90deg,var(--star) var(--star-fill),var(--star-off) var(--star-fill));-webkit-mask:var(--stars) no-repeat 0 0 / 130px 22px;mask:var(--stars) no-repeat 0 0 / 130px 22px;transition:--star-fill 1.1s var(--ease-reveal) .2s;--stars:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 22'%3E%3Cg%3E%3Cpath transform='scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(27 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(54 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(81 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(108 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3C/g%3E%3C/svg%3E")}
-@media (prefers-reduced-motion:no-preference){.js .rv-side:not(.is-in) .stars-big{--star-fill:0%}}
-.rv-count{margin-top:12px;font-size:1rem;color:var(--ink-2)}
-.rv-side .textlink{display:inline-block;margin-top:18px}
-.rv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.rv-card{display:flex;flex-direction:column;gap:18px;padding:28px;border-radius:20px;background:#fff;box-shadow:var(--e2)}
-.rv-feat{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;padding:12px 12px 12px 36px;align-items:stretch}
-.rv-feat .rv-text{display:flex;flex-direction:column;gap:22px;padding-block:24px}
-.rv-feat blockquote{font:500 clamp(1.375rem,1.05rem + 1vw,1.875rem)/1.25 var(--f-head);letter-spacing:-.022em;color:var(--ink);text-indent:-.41em}
-.rv-feat figure{border-radius:16px;overflow:hidden;min-height:280px}
+#opinie-title{max-width:20ch}
+.rv-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap);row-gap:24px;align-items:end;margin-bottom:var(--head-gap)}
+.rv-head h2{grid-column:1 / 8}
+.rv-sum{grid-column:8 / 13;justify-self:end;display:flex;align-items:center;gap:22px}
+.rv-score{font:300 clamp(4rem,2.8rem + 3.2vw,6rem)/.85 var(--f-head);letter-spacing:-.06em;color:var(--petrol);font-variant-numeric:tabular-nums}
+.rv-meta{display:grid;gap:6px;justify-items:start}
+.stars-big{display:block;width:130px;height:22px;margin-top:0;background:linear-gradient(90deg,var(--star) var(--star-fill),var(--star-off) var(--star-fill));-webkit-mask:var(--stars) no-repeat 0 0 / 130px 22px;mask:var(--stars) no-repeat 0 0 / 130px 22px;transition:--star-fill 1.1s var(--ease-reveal) .2s;--stars:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 22'%3E%3Cg%3E%3Cpath transform='scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(27 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(54 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(81 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3Cpath transform='translate(108 0) scale(.9167)' d='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z'/%3E%3C/g%3E%3C/svg%3E")}
+@media (prefers-reduced-motion:no-preference){.js .rv-head:not(.is-in) .stars-big{--star-fill:0%}}
+.rv-count{font-size:.9375rem;color:var(--ink-2)}
+.rv-meta .textlink{font-size:.9375rem}
+/* Opinie przewijane w poziomie: tor zaczyna się przy krawędzi treści i wychodzi poza prawą krawędź ekranu */
+.rv-track{--edge:calc(max(0px,(100% - var(--container)) / 2) + var(--gutter));display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:8px var(--edge) 40px;margin-block:-8px -40px;scroll-padding-inline:var(--edge);scrollbar-width:none;cursor:grab}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-track:focus-visible{outline-offset:-3px}
+.rv-track.dragging{cursor:grabbing;scroll-snap-type:none}
+.rv-track.dragging .rv-card{pointer-events:none;user-select:none}
+.rv-card{flex:0 0 clamp(300px,27vw,390px);scroll-snap-align:start;display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:20px;background:#fff;box-shadow:var(--e1)}
+.rv-feat{flex-basis:clamp(300px,46vw,640px);flex-direction:row;gap:24px;padding:10px 28px 10px 10px}
+.rv-feat figure{flex:0 0 38%;border-radius:14px;overflow:hidden}
 .rv-feat figure img{width:100%;height:100%;object-fit:cover}
+.rv-text{display:flex;flex-direction:column;gap:16px;flex:1;min-width:0;padding-block:18px}
+.rv-feat blockquote{font:500 1.1875rem/1.35 var(--f-head);letter-spacing:-.015em;color:var(--ink);text-indent:-.41em}
 .rv-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .rv-top time{font-size:.875rem;color:var(--muted)}
 .rv-prod{align-self:flex-start;padding:7px 12px;border-radius:999px;background:var(--ice);font:600 .8125rem/1.2 var(--f-text);color:var(--petrol-700)}
-.rv-card:not(.rv-feat) blockquote{font-size:1.0625rem;line-height:1.6;color:var(--ink)}
-.rv-author{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:6px}
+.rv-card:not(.rv-feat) blockquote{font-size:1rem;line-height:1.6;color:var(--ink)}
+.rv-author{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:4px}
 .rv-av{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--ice);font:600 .9375rem/1 var(--f-head);color:var(--petrol);flex:none}
 .rv-author strong{display:block;font-weight:600;font-size:.96875rem;color:var(--ink);line-height:1.3}
 .rv-author div span{display:block;font-size:.875rem;color:var(--muted)}
-
-/* ---------- Dla firm ---------- */
-.b2b{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--col-gap);align-items:center}
-.b2b-photos{grid-column:1 / 8;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:12px;height:clamp(440px,42vw,600px)}
-.b2b-photos figure{position:relative;border-radius:20px;overflow:hidden;background:var(--fill)}
-.b2b-photos figure:first-child{--r:20px;grid-row:span 2}
-.b2b-photos img{width:100%;height:100%;object-fit:cover}
-.b2b-photos figure:first-child img{object-position:80% 50%;filter:saturate(.92) contrast(1.04) brightness(1.1)}
-.b2b-photos figure:nth-child(3) img{object-position:2% 50%}
+.rv-controls{display:flex;align-items:center;gap:28px;margin-top:28px}
+.rv-rail{position:relative;flex:1;height:6px;border-radius:6px;background:rgba(6,50,63,.1);overflow:hidden}
+.rv-rail i{position:absolute;left:0;top:0;height:100%;width:40%;border-radius:inherit;background:var(--petrol);transition:transform .25s var(--ease-out),width .25s var(--ease-out)}
+.rv-nav{display:flex;gap:10px}
+.rv-btn{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;color:var(--ink);box-shadow:var(--e1);transition:background-color .2s,color .2s,opacity .2s}
+.rv-btn:hover{background:var(--petrol);color:#fff}
+.rv-btn:disabled{opacity:.35;cursor:default;pointer-events:none}
+.rv-btn .caret{width:12px;height:12px}
+#rv-prev .caret{rotate:90deg}
+#rv-next .caret{rotate:-90deg}
 .plabel{position:absolute;left:12px;bottom:12px;padding:9px 14px;border-radius:999px;background:#fff;box-shadow:var(--e1);font:500 .9375rem/1 var(--f-head);color:var(--ink)}
-.b2b-copy{grid-column:8 / 13;padding-left:clamp(0px,2.5vw,40px);display:flex;flex-direction:column;align-items:flex-start;gap:24px}
-.b2b-copy .h2{font-size:clamp(1.875rem,1.2rem + 2.2vw,3rem)}
-.ticks{display:grid;gap:8px;width:100%}
-.ticks li{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;background:#fff;font-weight:600;color:var(--ink);font-size:1rem}
-.check{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--petrol);flex:none}
-.check svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- Serwis ---------- */
 .service{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--col-gap);align-items:center}
@@ -585,8 +587,6 @@ blockquote{margin:0}
   .bar-cta{gap:8px}
   .topbar-r > span{display:none}
   .sec-head > :first-child,.sec-head > :last-child{grid-column:1 / -1}
-  .hero-main{grid-column:1 / -1}
-  .hero-trust{grid-column:1 / -1;grid-template-columns:repeat(3,minmax(0,1fr))}
   .needs{grid-template-columns:1fr}
   .need-list{position:relative;top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:6px;border-radius:22px;background:#fff;box-shadow:var(--e1)}
   .need-ind{border-radius:16px;background:var(--petrol);box-shadow:0 8px 18px -10px rgba(0,98,127,.8)}
@@ -609,12 +609,9 @@ blockquote{margin:0}
   .step:last-child{padding-bottom:0}
   .step-no{grid-row:1 / span 3}
   .step-when{margin-top:2px}
-  .reviews{grid-template-columns:1fr}
-  .rv-side{position:static;display:grid;grid-template-columns:auto 1fr;column-gap:24px;align-items:end}
-  .rv-score{grid-row:1 / span 3}
-  .b2b,.faq{row-gap:clamp(32px,8vw,48px)}
-  .b2b-photos,.b2b-copy{grid-column:1 / -1}
-  .b2b-copy{grid-row:1;padding-left:0}
+  .rv-head h2,.rv-sum{grid-column:1 / -1}
+  .rv-sum{justify-self:start}
+  .faq{row-gap:clamp(32px,8vw,48px)}
   .svc-copy,.svc-media{grid-column:1 / -1}
   .svc-media{margin-top:24px}
   .svc-photo{aspect-ratio:4 / 3.4}
@@ -639,19 +636,13 @@ blockquote{margin:0}
   .logo img,.is-float .logo img{height:40px}
   .topbar-in{justify-content:center;min-height:36px;text-align:center}
   .topbar-r,.topbar .hide-sm{display:none}
-  .hero .wrap{display:flex;flex-direction:column}
-  .rating{align-self:flex-start}
-  .hero-row{display:contents}
-  .hero-main{margin-top:16px}
-  .hero-actions{display:grid;grid-template-columns:minmax(0,1fr) 56px;gap:10px}
+  .hero-actions{display:grid;grid-template-columns:minmax(0,1fr) 56px;gap:10px;width:100%;margin-top:24px}
   .hero-actions .btn{width:100%;--h:56px}
   .hero-call{padding:0}
   .hero-call .call-num{display:none}
   .hero-call .g{width:22px;height:22px}
-  .hero-media{order:1;margin-top:24px;margin-right:0;height:auto;aspect-ratio:4 / 3.4;border-radius:24px}
-  .hero-trust{order:2;margin-top:24px;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-  .hero-trust b{font-size:1.0625rem}
-  .hero-trust span{font-size:.8125rem}
+  .rating{grid-column:1 / -1;justify-self:center;justify-items:center;margin:6px 0 0;text-align:center}
+  .hero-media{margin-top:28px;height:auto;aspect-ratio:4 / 3.4;border-radius:24px}
   .pocket{padding:14px 18px 0 0;border-top-right-radius:20px}
   .pocket::before,.pocket::after{width:20px;height:20px;background:radial-gradient(circle at 100% 0,transparent 19.5px,#fff 20px)}
   .pocket::before{top:-20px}
@@ -667,21 +658,20 @@ blockquote{margin:0}
   .why-photo2{aspect-ratio:4 / 3.4}
   .need-list{grid-template-columns:repeat(2,minmax(0,1fr))}
   .need-fact{flex-direction:column;align-items:flex-start;gap:10px}
-  .need-actions .btn,.process-cta .btn,.b2b-copy .btn{width:100%}
+  .need-actions .btn,.process-cta .btn{width:100%}
   .need-actions p{max-width:none}
   .gal-tools .seg{width:auto;-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)}
   .gal-tools .seg::after{content:"";flex:0 0 48px}
-  .rv-score{font-size:5rem}
-  .rv-grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gutter) * -1);padding:8px var(--gutter) 72px;margin-bottom:-44px;scroll-padding-inline:var(--gutter);scrollbar-width:none}
-  .rv-grid::-webkit-scrollbar{display:none}
-  .rv-card{flex:0 0 86%;scroll-snap-align:start}
-  .rv-feat{display:flex;flex-direction:column;padding:28px}
+  .rv-sum{gap:16px}
+  .rv-score{font-size:4rem}
+  .rv-track{gap:12px}
+  .rv-card,.rv-feat{flex-basis:84%;padding:24px}
+  .rv-feat{flex-direction:column}
   .rv-feat .rv-text{padding-block:0}
-  .rv-feat blockquote{font-size:1.1875rem;line-height:1.35}
+  .rv-feat blockquote{font-size:1.125rem}
   .rv-feat figure{display:none}
-  .b2b-photos{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .b2b-photos figure{aspect-ratio:1 / 1}
-  .b2b-photos figure:first-child{grid-row:auto;grid-column:1 / -1;aspect-ratio:3 / 2}
+  .rv-controls{gap:18px;margin-top:22px}
+  .rv-btn{width:48px;height:48px}
   .repair{grid-template-columns:1fr}
   .svc-actions .btn{width:100%}
   .svc-stat{gap:14px;padding:16px 20px}
@@ -708,7 +698,6 @@ blockquote{margin:0}
   <symbol id="g-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/></symbol>
   <symbol id="g-caret" viewBox="0 0 10 10"><path d="M1 3.2h8L5 7.8z"/></symbol>
   <symbol id="g-fb" viewBox="0 0 24 24"><path d="M14 8.5h3V5h-3c-2.2 0-4 1.8-4 4v2H7.5v3.5H10V22h3.5v-7.5h3l.5-3.5h-3.5V9.5c0-.6.4-1 1-1z"/></symbol>
-  <symbol id="g-check" viewBox="0 0 24 24"><path d="M6.5 12.5l3.5 3.5 7.5-8"/></symbol>
 </svg>
 
 <div class="topbar">
@@ -820,24 +809,17 @@ blockquote{margin:0}
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
-      <a class="rating" href="#opinie">
-        <span class="stars" aria-hidden="true"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span>
-        <b>4,9</b><span>127&nbsp;opinii w&nbsp;Google</span>
-      </a>
-      <h1 class="hero-title" id="hero-title"><span class="ln"><span>Rolety, żaluzje i&nbsp;markizy</span></span> <span class="ln"><span class="soft">na wymiar w&nbsp;Krakowie</span></span></h1>
-      <div class="hero-row">
-        <div class="hero-main">
-          <p class="lead">Przyjedziemy z&nbsp;próbnikami, zmierzymy każde okno i&nbsp;doradzimy, co sprawdzi się w&nbsp;Twoim domu. Pomiar jest bezpłatny, a&nbsp;wycenę na piśmie dostaniesz w&nbsp;ciągu 24&nbsp;godzin.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#fcard">Umów bezpłatny pomiar</a>
-            <a class="btn btn-tonal btn-lg hero-call" href="tel:+48733519139" aria-label="Zadzwoń: 733 519 139"><svg class="g" aria-hidden="true"><use href="#g-phone"/></svg><span class="call-num roll"><span>733&nbsp;519&nbsp;139</span><span aria-hidden="true">733&nbsp;519&nbsp;139</span></span></a>
-          </div>
+      <div class="hero-head">
+        <h1 class="hero-title" id="hero-title"><span class="ln"><span>Rolety, żaluzje i&nbsp;markizy</span></span> <span class="ln"><span class="soft">na wymiar w&nbsp;Krakowie</span></span></h1>
+        <p class="lead">Przyjedziemy z&nbsp;próbnikami, zmierzymy każde okno i&nbsp;doradzimy, co sprawdzi się w&nbsp;Twoim domu. Pomiar jest bezpłatny, a&nbsp;wycenę na piśmie dostaniesz w&nbsp;ciągu 24&nbsp;godzin.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#fcard">Umów bezpłatny pomiar</a>
+          <a class="btn btn-tonal btn-lg hero-call" href="tel:+48733519139" aria-label="Zadzwoń: 733 519 139"><svg class="g" aria-hidden="true"><use href="#g-phone"/></svg><span class="call-num roll"><span>733&nbsp;519&nbsp;139</span><span aria-hidden="true">733&nbsp;519&nbsp;139</span></span></a>
+          <a class="rating" href="#opinie" aria-label="Ocena 4,9 na 5, 127 opinii w Google">
+            <span class="rating-top"><span class="stars" aria-hidden="true"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><b>4,9</b></span>
+            <span class="rating-sub">127&nbsp;opinii w&nbsp;Google</span>
+          </a>
         </div>
-        <ul class="hero-trust" data-stagger>
-          <li><b>Pomiar gratis</b><span>wycena w&nbsp;24&nbsp;h</span></li>
-          <li><b>Gwarancja</b><span>do 5&nbsp;lat na produkty</span></li>
-          <li><b>Serwis</b><span>także po latach</span></li>
-        </ul>
       </div>
       <figure class="hero-media">
         <div class="hero-photo">
@@ -1136,67 +1118,68 @@ blockquote{margin:0}
   </section>
 
   <!-- OPINIE -->
-  <section class="sec" id="opinie" aria-labelledby="opinie-title">
-    <div class="wrap"><div class="sec-head" data-reveal><h2 class="h2" id="opinie-title">Klienci polecają nas sąsiadom i&nbsp;znajomym</h2></div></div>
-    <div class="wrap reviews">
-      <div class="rv-side" data-reveal>
-        <p class="rv-score" aria-label="Ocena 4,9 na&nbsp;5">4,9</p>
-        <span class="stars-big" aria-hidden="true"></span>
-        <p class="rv-count">127&nbsp;opinii w&nbsp;Google</p>
-        <a class="textlink" href="#opinie">Przeczytaj wszystkie opinie</a>
-      </div>
-      <div class="rv-grid" data-stagger>
-        <article class="rv-card rv-feat">
-          <div class="rv-text">
-            <div class="rv-top"><span class="stars" aria-label="5 na&nbsp;5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-09">wrzesień 2026</time></div>
-            <span class="rv-prod">Plisy na poddasze</span>
-            <blockquote>„Mamy trójkątne okna na poddaszu i&nbsp;dwie firmy odmówiły. Pan Marcin przyjechał dzień po telefonie, wszystko zmierzył, a&nbsp;po trzech tygodniach plisy były zamontowane. Pasują idealnie.”</blockquote>
-            <div class="rv-author"><span class="rv-av" aria-hidden="true">AK</span><div><strong>Agnieszka K.</strong><span>Kraków, Bronowice</span></div></div>
+  <section class="sec bg-paper" id="opinie" aria-labelledby="opinie-title">
+    <div class="wrap">
+      <div class="rv-head" data-reveal>
+        <h2 class="h2" id="opinie-title">Klienci polecają nas sąsiadom i&nbsp;znajomym</h2>
+        <div class="rv-sum">
+          <p class="rv-score" aria-label="Ocena 4,9 na 5">4,9</p>
+          <div class="rv-meta">
+            <span class="stars-big" aria-hidden="true"></span>
+            <p class="rv-count">127&nbsp;opinii w&nbsp;Google</p>
+            <a class="textlink" href="#opinie">Przeczytaj wszystkie opinie</a>
           </div>
-          <figure><img src="img/potrzeba-poddasze.jpg" alt="Plisy w&nbsp;trójkątnych oknach na poddaszu" width="1600" height="1200" loading="lazy" decoding="async"></figure>
-        </article>
-        <article class="rv-card">
-          <div class="rv-top"><span class="stars" aria-label="5 na&nbsp;5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-08">sierpień 2026</time></div>
-          <span class="rv-prod">Markiza tarasowa z&nbsp;napędem</span>
-          <blockquote>Pięciometrowa markiza z&nbsp;silnikiem i&nbsp;czujnikiem wiatru. Doradzili jasną tkaninę, pod którą nie robi się duszno. Montaż zajął pół dnia, a&nbsp;po pracy wszystko było posprzątane.</blockquote>
-          <div class="rv-author"><span class="rv-av" aria-hidden="true">TW</span><div><strong>Tomasz W.</strong><span>Wieliczka</span></div></div>
-        </article>
-        <article class="rv-card">
-          <div class="rv-top"><span class="stars" aria-label="5 na&nbsp;5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-07">lipiec 2026</time></div>
-          <span class="rv-prod">Żaluzje fasadowe w&nbsp;nowym domu</span>
-          <blockquote>Żaluzje fasadowe montowali jeszcze w&nbsp;stanie surowym i&nbsp;sami dogadali się z&nbsp;elektrykiem. W&nbsp;lipcu w&nbsp;salonie jest wyraźnie chłodniej, a&nbsp;klimatyzacja prawie nie pracuje.</blockquote>
-          <div class="rv-author"><span class="rv-av" aria-hidden="true">EM</span><div><strong>Ewa i&nbsp;Paweł M.</strong><span>Zabierzów</span></div></div>
-        </article>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- DLA FIRM -->
-  <section class="sec bg-paper" id="dla-firm" aria-labelledby="firmy-title">
-    <div class="wrap b2b">
-      <div class="b2b-photos">
-        <figure class="raise">
-          <img src="img/firma-biuro-sala.jpg" alt="Sala konferencyjna z&nbsp;żaluzjami pionowymi w&nbsp;oknach" width="1600" height="900" loading="lazy" decoding="async">
-          <span class="plabel">Sala konferencyjna</span>
-        </figure>
-        <figure data-reveal>
-          <img src="img/firma-szkola.jpg" alt="Sala lekcyjna z&nbsp;brązowymi roletami w&nbsp;oknach" width="1600" height="1200" loading="lazy" decoding="async">
-          <span class="plabel">Szkoła</span>
-        </figure>
-        <figure data-reveal style="--d:120ms">
-          <img src="img/firma-restauracja.jpg" alt="Markiza nad ogródkiem restauracji" width="1600" height="900" loading="lazy" decoding="async">
-          <span class="plabel">Restauracja</span>
-        </figure>
-      </div>
-      <div class="b2b-copy" data-reveal>
-        <h2 class="h2" id="firmy-title">Osłony dla biur, szkół i&nbsp;lokali usługowych</h2>
-        <p class="lead">Wyposażamy całe budynki: sale lekcyjne, open space, gabinety i&nbsp;ogródki restauracyjne. Wycenimy według rzutu albo po wizji lokalnej, a&nbsp;montaż zaplanujemy poza godzinami pracy.</p>
-        <ul class="ticks">
-          <li><span class="check" aria-hidden="true"><svg><use href="#g-check"/></svg></span>Faktura VAT i&nbsp;realizacja etapami</li>
-          <li><span class="check" aria-hidden="true"><svg><use href="#g-check"/></svg></span>Jeden opiekun dla całego zlecenia</li>
-          <li><span class="check" aria-hidden="true"><svg><use href="#g-check"/></svg></span>Serwis gwarancyjny i&nbsp;pogwarancyjny</li>
-        </ul>
-        <a class="btn btn-ink" href="#fcard">Zapytaj o&nbsp;ofertę dla firmy</a>
+    <div class="rv-track" id="rv-track" tabindex="0" role="region" aria-label="Opinie klientów. Przewiń w bok, aby zobaczyć kolejne." data-reveal>
+      <article class="rv-card rv-feat">
+        <figure><img src="img/potrzeba-poddasze.jpg" alt="Plisy w&nbsp;trójkątnych oknach na poddaszu" width="1600" height="1200" loading="lazy" decoding="async"></figure>
+        <div class="rv-text">
+          <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-09">wrzesień 2026</time></div>
+          <span class="rv-prod">Plisy na poddasze</span>
+          <blockquote>„Mamy trójkątne okna na poddaszu i&nbsp;dwie firmy odmówiły. Pan Marcin przyjechał dzień po telefonie, wszystko zmierzył, a&nbsp;po trzech tygodniach plisy były zamontowane. Pasują idealnie.”</blockquote>
+          <div class="rv-author"><span class="rv-av" aria-hidden="true">AK</span><div><strong>Agnieszka K.</strong><span>Kraków, Bronowice</span></div></div>
+        </div>
+      </article>
+      <article class="rv-card">
+        <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-08">sierpień 2026</time></div>
+        <span class="rv-prod">Markiza tarasowa z&nbsp;napędem</span>
+        <blockquote>Pięciometrowa markiza z&nbsp;silnikiem i&nbsp;czujnikiem wiatru. Doradzili jasną tkaninę, pod którą nie robi się duszno. Montaż zajął pół dnia, a&nbsp;po pracy wszystko było posprzątane.</blockquote>
+        <div class="rv-author"><span class="rv-av" aria-hidden="true">TW</span><div><strong>Tomasz W.</strong><span>Wieliczka</span></div></div>
+      </article>
+      <article class="rv-card">
+        <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-07">lipiec 2026</time></div>
+        <span class="rv-prod">Żaluzje fasadowe w&nbsp;nowym domu</span>
+        <blockquote>Żaluzje fasadowe montowali jeszcze w&nbsp;stanie surowym i&nbsp;sami dogadali się z&nbsp;elektrykiem. W&nbsp;lipcu w&nbsp;salonie jest wyraźnie chłodniej, a&nbsp;klimatyzacja prawie nie pracuje.</blockquote>
+        <div class="rv-author"><span class="rv-av" aria-hidden="true">EM</span><div><strong>Ewa i&nbsp;Paweł M.</strong><span>Zabierzów</span></div></div>
+      </article>
+      <article class="rv-card">
+        <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-06">czerwiec 2026</time></div>
+        <span class="rv-prod">Rolety dzień/noc w&nbsp;mieszkaniu</span>
+        <blockquote>Rolety dzień/noc do sześciu okien, zamontowane bez wiercenia w&nbsp;ramach. Od strony ulicy w&nbsp;końcu mamy prywatność, a&nbsp;w&nbsp;dzień w&nbsp;pokojach nadal jest jasno.</blockquote>
+        <div class="rv-author"><span class="rv-av" aria-hidden="true">KR</span><div><strong>Katarzyna R.</strong><span>Kraków, Krowodrza</span></div></div>
+      </article>
+      <article class="rv-card">
+        <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-06">czerwiec 2026</time></div>
+        <span class="rv-prod">Moskitiery plisowane</span>
+        <blockquote>Moskitiera plisowana do drzwi tarasowych i&nbsp;ramkowe do okien. Siatki prawie nie widać, a&nbsp;dzieci wreszcie śpią przy otwartym oknie.</blockquote>
+        <div class="rv-author"><span class="rv-av" aria-hidden="true">JS</span><div><strong>Joanna i&nbsp;Piotr S.</strong><span>Niepołomice</span></div></div>
+      </article>
+      <article class="rv-card">
+        <div class="rv-top"><span class="stars" aria-label="5 na 5"><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg><svg><use href="#g-star"/></svg></span><time datetime="2026-05">maj 2026</time></div>
+        <span class="rv-prod">Naprawa rolety zewnętrznej</span>
+        <blockquote>Zerwała się taśma w&nbsp;rolecie, której nie montowali. Serwis przyjechał po dwóch dniach i&nbsp;naprawił ją w&nbsp;niecałą godzinę. Przy okazji sprawdzili pozostałe rolety w&nbsp;domu.</blockquote>
+        <div class="rv-author"><span class="rv-av" aria-hidden="true">MP</span><div><strong>Marek P.</strong><span>Skawina</span></div></div>
+      </article>
+    </div>
+    <div class="wrap">
+      <div class="rv-controls">
+        <span class="rv-rail" aria-hidden="true"><i id="rv-progress"></i></span>
+        <div class="rv-nav">
+          <button class="rv-btn" type="button" id="rv-prev" aria-label="Poprzednie opinie" aria-controls="rv-track"><svg class="caret" aria-hidden="true"><use href="#g-caret"/></svg></button>
+          <button class="rv-btn" type="button" id="rv-next" aria-label="Następne opinie" aria-controls="rv-track"><svg class="caret" aria-hidden="true"><use href="#g-caret"/></svg></button>
+        </div>
       </div>
     </div>
   </section>
@@ -1349,7 +1332,6 @@ blockquote{margin:0}
         <li><a href="#realizacje">Realizacje</a></li>
         <li><a href="#jak-pracujemy">Pomiar i&nbsp;wycena</a></li>
         <li><a href="#serwis">Serwis i&nbsp;naprawa</a></li>
-        <li><a href="#dla-firm">Dla firm</a></li>
         <li><a href="#faq">Pytania i&nbsp;odpowiedzi</a></li>
       </ul>
     </div>
@@ -1502,7 +1484,7 @@ blockquote{margin:0}
       rio.unobserve(en.target);
     });
   }, {threshold: .15, rootMargin: '0px 0px -8% 0px'});
-  $$('[data-reveal], #steps, .rv-side').forEach(function(el){ rio.observe(el); });
+  $$('[data-reveal], #steps').forEach(function(el){ rio.observe(el); });
   /* Zdjęcie przycięte w całości nie przecina się z ekranem, więc obserwujemy jego rodzica */
   $$('.raise').forEach(function(el){
     var p = el.parentNode;
@@ -1653,6 +1635,47 @@ blockquote{margin:0}
   lb.addEventListener('keydown', function(e){
     if (e.key === 'ArrowLeft') showLB(lbIdx - 1);
     if (e.key === 'ArrowRight') showLB(lbIdx + 1);
+  });
+
+  /* Opinie: przewijanie w poziomie, przyciski, pasek postępu i przeciąganie myszą */
+  var track = $('#rv-track'), rvPrev = $('#rv-prev'), rvNext = $('#rv-next'), rvBar = $('#rv-progress');
+  function rvStep(){
+    var cards = $$('.rv-card', track);
+    return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+  }
+  function rvUpdate(){
+    var max = track.scrollWidth - track.clientWidth;
+    var ratio = Math.min(1, track.clientWidth / track.scrollWidth);
+    var p = max > 0 ? track.scrollLeft / max : 0;
+    rvBar.style.width = (ratio * 100) + '%';
+    rvBar.style.transform = 'translateX(' + (p * (1 / ratio - 1) * 100) + '%)';
+    rvPrev.disabled = track.scrollLeft <= 16;
+    rvNext.disabled = track.scrollLeft >= max - 16;
+  }
+  rvPrev.addEventListener('click', function(){ track.scrollBy({left: -rvStep(), behavior: motionOK() ? 'smooth' : 'auto'}); });
+  rvNext.addEventListener('click', function(){ track.scrollBy({left: rvStep(), behavior: motionOK() ? 'smooth' : 'auto'}); });
+  track.addEventListener('scroll', function(){ requestAnimationFrame(rvUpdate); }, {passive: true});
+  if ('ResizeObserver' in window) new ResizeObserver(rvUpdate).observe(track);
+  rvUpdate();
+  var drag = null;
+  track.addEventListener('pointerdown', function(e){
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    drag = {x: e.clientX, left: track.scrollLeft, moved: false};
+  });
+  window.addEventListener('pointermove', function(e){
+    if (!drag) return;
+    var dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) > 4){ drag.moved = true; track.classList.add('dragging'); }
+    if (drag.moved){ track.scrollLeft = drag.left - dx; e.preventDefault(); }
+  });
+  window.addEventListener('pointerup', function(){
+    if (!drag) return;
+    var moved = drag.moved; drag = null;
+    if (!moved) return;
+    /* Po puszczeniu karta dociąga się do najbliższej pozycji */
+    var step = rvStep(), target = Math.round(track.scrollLeft / step) * step;
+    track.classList.remove('dragging');
+    track.scrollTo({left: target, behavior: motionOK() ? 'smooth' : 'auto'});
   });
 
   /* Formularz (makieta: bez wysyłki) */
